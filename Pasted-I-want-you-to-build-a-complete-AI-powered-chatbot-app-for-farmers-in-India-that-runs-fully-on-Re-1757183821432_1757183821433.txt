@@ -1,0 +1,100 @@
+I want you to build a **complete AI-powered chatbot app for farmers in India** that runs fully on Replit.  
+This chatbot must feel like ChatGPT, with **conversation memory, history, multimedia support, and a smooth animated farmer-friendly interface**.  
+
+========================
+✨ Core Features
+========================
+1. **Stack**:
+   - Backend: Node.js + Express.
+   - Frontend: HTML, CSS, JavaScript (vanilla).
+   - Keep files separate (`server.js`, `public/index.html`, `public/styles.css`, `public/app.js`, `.env.example`).
+
+2. **Gemini API Integration**:
+   - Use Google Gemini model (`gemini-2.5-flash`).
+   - Store API key securely in `.env` (e.g., `GEMINI_API_KEY`) and **never expose it to the frontend**.
+   - Backend should provide only a safe `/api/chat` endpoint for the frontend.
+   - Farmers should never see or access backend code, `.env`, or API key.
+   - The AI should **remember full conversation history** within the session (like ChatGPT).
+   - Store conversation in an array (`[{role: "user", content: ""}, {role: "assistant", content: ""}]`) and send it on every request.
+
+3. **Multilingual Support**:
+   - Auto-detect the farmer’s input language (English, Hindi, Tamil, Bengali, Kannada, Malayalam, etc.).
+   - Always reply in the same language as the user typed.
+   - Provide an optional dropdown to override language manually.
+
+4. **Multimedia Support**:
+   - Farmers can upload images (crop photos), audio, or short video clips.
+   - Use `multer` in Express to handle uploads.
+   - Store files in `/uploads` and provide accessible URLs.
+   - AI receives file URLs as part of its context.
+   - Show uploaded files in the chat (image thumbnails, audio/video players).
+
+5. **Conversation Memory**:
+   - The AI should behave like ChatGPT: remember context during the session.
+   - Add a **"🆕 New Chat"** button to clear memory and start fresh.
+
+6. **History Panel**:
+   - Add a **📜 History button** that opens a side panel or popup showing past chats.
+   - Save history locally in browser (`localStorage`).
+   - Each history item shows the first 10 words of the farmer’s question.
+   - Farmer can tap a history item to reload it into the chat.
+   - Add a “Clear History” option.
+
+========================
+🎨 UI / UX Requirements
+========================
+1. **Farmer-Friendly Design**:
+   - Interface like ChatGPT, but simpler and optimized for farmers.
+   - Big readable fonts, earthy green/brown theme (🌱).
+   - Works smoothly on **mobile phones**.
+   - Buttons should be large, clearly labeled with text + small icons.
+
+2. **Smooth Animations**:
+   - All buttons (Send, Upload, History, New Chat) should have hover animations, press effects, and smooth transitions.
+   - Messages should appear with fade-in + slide-up animations.
+   - “AI is thinking…” typing indicator should animate smoothly.
+
+3. **Chat Window**:
+   - Farmer messages (right, green bubbles).
+   - AI replies (left, white/grey bubbles).
+   - Multimedia previews inside chat.
+   - Auto-scroll to newest message.
+
+4. **Controls**:
+   - Input text box + large **Send** button.
+   - **Upload** button for photos/audio/video.
+   - **History** button for old chats.
+   - **New Chat** button for clearing context.
+
+========================
+📂 Project Structure
+========================
+- `server.js` → Express backend with Gemini proxy, memory handling, file upload.
+- `package.json` → dependencies: express, dotenv, cors, multer, axios.
+- `.env.example` → `GEMINI_API_KEY`, `PORT`, `BASE_URL`, `MODEL`.
+- `public/index.html` → UI markup.
+- `public/styles.css` → farmer-friendly styling, animations for messages and buttons.
+- `public/app.js` → frontend logic: requests, chat updates, history, animations.
+
+========================
+⚡ AI Prompt for Gemini
+========================
+System instruction to send with every request:
+"You are an agricultural advisor for smallholder farmers in India.  
+Always reply in the same language as the farmer’s input.  
+Give simple, step-by-step, low-cost solutions.  
+Keep answers short and practical.  
+If more details are needed (crop type, soil, pest symptoms), ask one simple follow-up question.  
+If the farmer uploads photos/audio/video, include them in your reasoning."
+
+========================
+📌 Summary
+========================
+The result should be a **ready-to-run farmer chatbot app** that:
+- Remembers chat context like ChatGPT.
+- Supports multilingual input/output automatically.
+- Allows image/audio/video uploads with previews.
+- Has a **modern, animated, farmer-friendly UI** (big buttons, earthy theme).
+- Provides a **History panel** with past conversations.
+- Hides backend code and API key from the user.
+- Runs fully on Replit.
